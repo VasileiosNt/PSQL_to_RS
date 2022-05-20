@@ -1,0 +1,4 @@
+RS_USERNAME: admin
+RS_PASSWORD: insecurE1
+RS_DATABASE: playground
+RS_PORT: 5432

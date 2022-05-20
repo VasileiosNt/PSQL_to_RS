@@ -1,0 +1,10 @@
+- name: Delete redshfift cluster
+  hosts: "localhost"
+  tasks:
+    
+    - name: "Delete cluster" 
+      community.aws.redshift:
+        command: delete
+        node_type: ds2.xlarge
+        identifier: on-boarding-forty-twoo
+        skip_final_cluster_snapshot: true

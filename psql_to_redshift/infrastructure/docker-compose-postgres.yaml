@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  psqldb:
+    build:
+      context: .
+      dockerfile: psql.Dockerfile
+    ports:
+      - "5432:5432"
+    env_file:
+      - env/psql.env
+    volumes:
+      - ./psql-data/:/var/lib/postgresql/data
+      - ./init_table.sql:/docker-entrypoint-initdb.d/init_table.sql
+    restart: always
+  admin:
+    image: adminer
+    restart: always
+    depends_on: 
+      - psqldb
+    ports:
+      - 8080:8080
+         
+       
+          

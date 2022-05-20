@@ -1,0 +1,18 @@
+- name: Create redshfift cluster
+  hosts: "localhost"
+  tasks:
+    - include_vars: rs_vars.yaml
+    
+    - name: "Create cluster" 
+      community.aws.redshift:
+        command: create
+        node_type: ds2.xlarge
+        identifier: on-boarding-forty-twoo
+        username: "{{ RS_USERNAME }}"
+        password: "{{ RS_PASSWORD }}"
+        db_name: "{{ RS_DATABASE }}"
+        port: "{{ RS_PORT }}"
+        publicly_accessible: true
+        skip_final_cluster_snapshot: true
+        wait: true
+
