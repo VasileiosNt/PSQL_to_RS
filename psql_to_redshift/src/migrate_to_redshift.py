@@ -57,7 +57,7 @@ def create_rs_table(conn:psycopg2.connection)->None:
     with conn.cursor() as cur:
         cur.execute(
             open(
-                "/home/vasilis/Development/42Matters/task_1/psql_to_redshift/infrastructure/init_table_rs.sql",
+                "../infrastructure/init_table_rs.sql",
                 "r",
             ).read()
         )
