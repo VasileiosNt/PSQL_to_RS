@@ -8,7 +8,7 @@ s3 = boto3.resource("s3")
 s3_client = boto3.client("s3")
 
 
-def create_bucket(bucket_name: str = "on-boarding-forty-two-matters") -> None:
+def create_bucket(bucket_name: str = "my_bucket_name") -> None:
 
     if not s3.Bucket(bucket_name) in s3.buckets.all():
         logger.info(f"Creating bucket {bucket_name}")
@@ -22,7 +22,7 @@ def create_bucket(bucket_name: str = "on-boarding-forty-two-matters") -> None:
 
 
 def upload_file(
-    file_path: str, bucket_name: str = "on-boarding-forty-two-matters"
+    file_path: str, bucket_name: str = "my_bucket_name", key: str = "my_key"
 ) -> None:
     logger.info("Uploading file to bucket...")
     with open(file_path, "rb") as data:
