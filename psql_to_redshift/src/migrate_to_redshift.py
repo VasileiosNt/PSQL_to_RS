@@ -73,8 +73,8 @@ def load_data_from_s3(conn:psycopg2.connection)->None:
     s3 = boto3.client("s3")
     s3_r = boto3.resource("s3")
 
-    test = s3.list_buckets()
-    bucket_name = [name for name in test["Buckets"]]
+    buckets = s3.list_buckets()
+    bucket_name = [name for name in buckets["Buckets"]]
     my_bucket = s3_r.Bucket(bucket_name[0]["Name"])
 
     for ind, obj in enumerate(my_bucket.objects.all()):
@@ -82,8 +82,8 @@ def load_data_from_s3(conn:psycopg2.connection)->None:
             filename = obj.key
             bucket = obj.bucket_name
 
-    test = boto3.Session()
-    creds = test.get_credentials()
+    sesssion = boto3.Session()
+    creds = sesssion.get_credentials()
     current_creds = creds.get_frozen_credentials()
 
     S3_URI = f"s3://{bucket}/{filename}"
